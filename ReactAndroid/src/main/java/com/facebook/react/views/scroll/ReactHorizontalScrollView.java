@@ -27,6 +27,7 @@ public class ReactHorizontalScrollView extends HorizontalScrollView {
 
   public ReactHorizontalScrollView(Context context) {
     super(context);
+    mScrollEnabled = true;
   }
 
   public void setScrollEnabled(boolean scrollEnabled) {

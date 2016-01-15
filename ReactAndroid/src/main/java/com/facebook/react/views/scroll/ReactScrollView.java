@@ -40,6 +40,7 @@ public class ReactScrollView extends ScrollView implements ReactClippingViewGrou
 
   public ReactScrollView(Context context) {
     super(context);
+    mScrollEnabled = true;
   }
 
   public void setScrollEnabled(boolean scrollEnabled) {
