@@ -23,8 +23,14 @@ public class ReactHorizontalScrollView extends HorizontalScrollView {
 
   private final OnScrollDispatchHelper mOnScrollDispatchHelper = new OnScrollDispatchHelper();
 
+  private boolean mScrollEnabled;
+
   public ReactHorizontalScrollView(Context context) {
     super(context);
+  }
+
+  public void setScrollEnabled(boolean scrollEnabled) {
+    mScrollEnabled = scrollEnabled;
   }
 
   @Override
@@ -53,11 +59,20 @@ public class ReactHorizontalScrollView extends HorizontalScrollView {
 
   @Override
   public boolean onInterceptTouchEvent(MotionEvent ev) {
-    if (super.onInterceptTouchEvent(ev)) {
+    if (super.onInterceptTouchEvent(ev) && mScrollEnabled) {
       NativeGestureUtil.notifyNativeGestureStarted(this, ev);
       return true;
     }
 
     return false;
+  }
+
+  @Override
+  public boolean onTouchEvent(MotionEvent ev) {
+    if (mScrollEnabled) {
+      return super.onTouchEvent(ev);
+    } else {
+      return false;
+    }
   }
 }
