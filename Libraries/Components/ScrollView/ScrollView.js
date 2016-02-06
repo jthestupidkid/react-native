@@ -211,6 +211,7 @@ var ScrollView = React.createClass({
      * The default value is true.
      */
     scrollEnabled: PropTypes.bool,
+    fling: PropTypes.bool,
     /**
      * This controls how often the scroll event will be fired while scrolling
      * (in events per seconds). A higher number yields better accuracy for code
@@ -340,6 +341,7 @@ var ScrollView = React.createClass({
 
   scrollTo: function(destY: number = 0, destX: number = 0, animated: boolean = true) {
     // $FlowFixMe - Don't know how to pass Mixin correctly. Postpone for now
+    
     this.getScrollResponder().scrollResponderScrollTo(destX, destY, animated);
   },
 
@@ -522,6 +524,7 @@ var validAttributes = {
   contentInset: {diff: insetsDiffer},
   contentOffset: {diff: pointsDiffer},
   decelerationRate: true,
+  fling: true,
   horizontal: true,
   keyboardDismissMode: true,
   keyboardShouldPersistTaps: true,

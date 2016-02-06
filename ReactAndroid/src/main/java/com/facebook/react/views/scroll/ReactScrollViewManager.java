@@ -52,6 +52,11 @@ public class ReactScrollViewManager
     view.setScrollEnabled(value);
   }
 
+  @ReactProp(name = "fling", defaultBoolean = true)
+  public void setFling(ReactScrollView view, boolean value) {
+    view.setFling(value);
+  }
+
   @ReactProp(name = ReactClippingViewGroupHelper.PROP_REMOVE_CLIPPED_SUBVIEWS)
   public void setRemoveClippedSubviews(ReactScrollView view, boolean removeClippedSubviews) {
     view.setRemoveClippedSubviews(removeClippedSubviews);

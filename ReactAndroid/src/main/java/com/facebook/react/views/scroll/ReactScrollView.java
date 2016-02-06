@@ -40,15 +40,19 @@ public class ReactScrollView extends ScrollView implements ReactClippingViewGrou
   private boolean mDragging;
   private boolean mFlinging;
   private boolean mDoneFlinging;
-  private boolean mScrollEnabled;
+  private boolean mScrollEnabled = true;
+  private boolean mFling = true;
 
   public ReactScrollView(Context context) {
     super(context);
-    mScrollEnabled = true;
   }
 
   public void setScrollEnabled(boolean scrollEnabled) {
     mScrollEnabled = scrollEnabled;
+  }
+
+  public void setFling(boolean fling) {
+    mFling = fling;
   }
 
   public void setSendMomentumEvents(boolean sendMomentumEvents) {
@@ -152,6 +156,7 @@ public class ReactScrollView extends ScrollView implements ReactClippingViewGrou
 
   @Override
   public void fling(int velocityY) {
+    if (!mFling) return;
     super.fling(velocityY);
     if (mSendMomentumEvents) {
       mFlinging = true;
