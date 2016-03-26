@@ -67,14 +67,9 @@ RCT_EXPORT_MODULE()
 
 - (void)emitEvent:(NSString *)eventName forNotification:(NSNotification *)notification
 {
-  CGRect frame = [notification.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
+  float newHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
   NSDictionary *event = @{
-    @"frame": @{
-      @"x": @(frame.origin.x),
-      @"y": @(frame.origin.y),
-      @"width": @(frame.size.width),
-      @"height": @(frame.size.height),
-    },
+    @"height": [NSNumber numberWithFloat:newHeight],
   };
   [_bridge.eventDispatcher sendDeviceEventWithName:eventName body:event];
 }
